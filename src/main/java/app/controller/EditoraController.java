@@ -100,11 +100,8 @@ public class EditoraController {
 		
 		try {
 			
-			if (this.editoraService.delete(idEditora)) {
-				return new ResponseEntity<String>("Apagado com sucesso", HttpStatus.OK);
-				}else 
-					return new ResponseEntity<String>("Nao encontrado", HttpStatus.NOT_FOUND);
-			
+			String mensagem = this.editoraService.delete(idEditora);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Deu esse erro aqui: "+e.getMessage(), HttpStatus.BAD_REQUEST);
