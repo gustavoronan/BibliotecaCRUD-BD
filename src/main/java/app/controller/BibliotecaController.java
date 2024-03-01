@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.entity.BibliotecaEntity;
+import app.entity.Biblioteca;
 import app.service.BibliotecaService;
 
 @RestController
@@ -25,7 +25,7 @@ public class BibliotecaController {
 	private BibliotecaService bibliotecaService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody BibliotecaEntity biblioteca){
+	public ResponseEntity<String> save(@RequestBody Biblioteca biblioteca){
 
 
 
@@ -42,11 +42,11 @@ public class BibliotecaController {
 			return new ResponseEntity<String>("Deu esse erro aqui: "+e.getMessage(), HttpStatus.BAD_REQUEST);
 
 		}		
-		
+
 	}
-	
+
 	@PutMapping("update/{idBiblioteca}")
-	public ResponseEntity<String> update(@RequestBody BibliotecaEntity biblioteca, @PathVariable long idBiblioteca){
+	public ResponseEntity<String> update(@RequestBody Biblioteca biblioteca, @PathVariable long idBiblioteca){
 
 
 
@@ -63,58 +63,56 @@ public class BibliotecaController {
 			return new ResponseEntity<String>("Deu esse erro aqui: "+e.getMessage(), HttpStatus.BAD_REQUEST);
 
 		}		
-		
+
 	}
-	
-	
+
+
 	@GetMapping("/listAll")
-	public ResponseEntity<List<BibliotecaEntity>> listAll (){
-		
+	public ResponseEntity<List<Biblioteca>> listAll (){
+
 		try {
-			
-			List<BibliotecaEntity> lista = this.bibliotecaService.listAll();
+
+			List<Biblioteca> lista = this.bibliotecaService.listAll();
 			return new ResponseEntity<>(lista, HttpStatus.CREATED);
-			
+
 		} catch (Exception e) {
-			
+
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 
 		}
-		
+
 	}
-	
-	
+
+
 	@GetMapping("/findById/{idBiblioteca}")
-	public ResponseEntity<BibliotecaEntity> findById(@PathVariable long idBiblioteca){
-		
+	public ResponseEntity<Biblioteca> findById(@PathVariable long idBiblioteca){
+
 		try {
-			
-			BibliotecaEntity biblioteca = this.bibliotecaService.findById(idBiblioteca);
+
+			Biblioteca biblioteca = this.bibliotecaService.findById(idBiblioteca);
 			return new ResponseEntity<>(biblioteca, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
-	
-	@DeleteMapping("/delete/{idBiblioteca}")
-	public ResponseEntity<String> delete(@PathVariable long idBiblioteca){
-		
+
+	@DeleteMapping("/delete/{idBilbioteca}")
+	public ResponseEntity<String> delete(@PathVariable long idBilbioteca){
+
 		try {
-			
-			if (this.bibliotecaService.delete(idBiblioteca)) {
-				return new ResponseEntity<String>("Apagado com sucesso", HttpStatus.OK);
-				}else 
-					return new ResponseEntity<String>("Nao encontrado", HttpStatus.NOT_FOUND);
-			
-			
+
+			String mensagem = this.bibliotecaService.delete(idBilbioteca);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Deu esse erro aqui: "+e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
- 
+
+
 
 }
 

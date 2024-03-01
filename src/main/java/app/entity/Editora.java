@@ -7,9 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+public class Editora {
 
-public class BibliotecaEntity {
-	int id;
-	String nome;
-	String telefone;
+	long idEditora;
+	String nomeEditora;
+	String enderecoEditora;
+	String telefoneEditora;
+	
 }

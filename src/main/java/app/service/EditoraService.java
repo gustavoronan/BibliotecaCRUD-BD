@@ -5,23 +5,23 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import app.entity.EditoraEntity;
+import app.entity.Editora;
 
 @Service
 public class EditoraService {
 
-List<EditoraEntity> lista = new ArrayList<>();
+List<Editora> lista = new ArrayList<>();
 	
-	public String save (EditoraEntity editora) {
+	public String save (Editora editora) {
 		lista.add(editora);
 		return editora.getNomeEditora() + " editora salvo com sucesso";
 	}
 	
-	public List<EditoraEntity> listAll(){
+	public List<Editora> listAll(){
 
-		EditoraEntity editora = new EditoraEntity(1, "livros", "rua 1", "0102301203");
-		EditoraEntity editora2 = new EditoraEntity(2, "machados", "rua 2", "123912399123");
-		EditoraEntity editora3 = new EditoraEntity(3, "darkside", "rua 3", "129394941231");
+		Editora editora = new Editora(1, "livros", "rua 1", "0102301203");
+		Editora editora2 = new Editora(2, "machados", "rua 2", "123912399123");
+		Editora editora3 = new Editora(3, "darkside", "rua 3", "129394941231");
 
 		lista.add(editora);
 		lista.add(editora2);
@@ -31,7 +31,7 @@ List<EditoraEntity> lista = new ArrayList<>();
 
 	}
 	
-	public EditoraEntity findById(long idEditora) {
+	public Editora findById(long idEditora) {
 
 		// banco de dados
 		lista = this.listAll();
@@ -47,7 +47,7 @@ List<EditoraEntity> lista = new ArrayList<>();
 	
 	}
 	
-	public String update(long idEditora, EditoraEntity editora) {
+	public String update(long idEditora, Editora editora) {
 		
 		lista = this.listAll();
 
@@ -68,7 +68,7 @@ List<EditoraEntity> lista = new ArrayList<>();
 		lista = this.listAll();
 
 		if(lista != null)
-			for(EditoraEntity editora : this.lista) {
+			for(Editora editora : this.lista) {
 				if(editora.getIdEditora() == idEditora) {
 					this.lista.remove(editora);
 					return true;

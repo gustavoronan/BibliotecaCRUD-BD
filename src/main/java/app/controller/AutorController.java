@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.entity.AutorEntity;
+import app.entity.Autor;
 import app.service.AutorService;
 
 
@@ -28,7 +28,7 @@ public class AutorController {
 	private AutorService autorService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody AutorEntity autor){
+	public ResponseEntity<String> save(@RequestBody Autor autor){
 
 
 
@@ -46,12 +46,13 @@ public class AutorController {
 		
 	}
 	
+	
 	@GetMapping("/listAll")
-	public ResponseEntity<List<AutorEntity>> listAll (){
+	public ResponseEntity<List<Autor>> listAll (){
 		
 		try {
 			
-			List<AutorEntity> lista = this.autorService.listAll();
+			List<Autor> lista = this.autorService.listAll();
 			return new ResponseEntity<>(lista, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
@@ -62,12 +63,13 @@ public class AutorController {
 		
 	}
 	
+	/*
 	@GetMapping("/findById/{idAutor}")
-	public ResponseEntity<AutorEntity> findById(@PathVariable long idAutor){
+	public ResponseEntity<Autor> findById(@PathVariable long idAutor){
 		
 		try {
 			
-			AutorEntity autor = this.autorService.findById(idAutor);
+			Autor autor = this.autorService.findById(idAutor);
 			return new ResponseEntity<>(autor, HttpStatus.OK);
 			
 		} catch (Exception e) {
@@ -77,7 +79,7 @@ public class AutorController {
 	}
 	
 	@PutMapping("update/{idAutor}")
-	public ResponseEntity<String> update(@RequestBody AutorEntity autor, @PathVariable long idAutor){
+	public ResponseEntity<String> update(@RequestBody Autor autor, @PathVariable long idAutor){
 
 
 
@@ -111,4 +113,5 @@ public class AutorController {
 		}
 		
 	}
+	*/
 }

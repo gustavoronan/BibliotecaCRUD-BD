@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.entity.LivroEntity;
+import app.entity.Livro;
 import app.service.LivroService;
 
 @RestController
@@ -26,7 +26,7 @@ public class LivroController {
 	private LivroService livroService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody LivroEntity livro){
+	public ResponseEntity<String> save(@RequestBody Livro livro){
 
 
 
@@ -44,9 +44,10 @@ public class LivroController {
 		
 	}
 	
-	@PutMapping("update/{idLivro}")
-	public ResponseEntity<String> update(@RequestBody LivroEntity livro, @PathVariable long idLivro){
 
+/*	
+	@PutMapping("update/{idLivro}")
+	public ResponseEntity<String> update(@RequestBody Livro livro, @PathVariable long idLivro){
 
 
 		try {
@@ -65,11 +66,11 @@ public class LivroController {
 	
 	
 	@GetMapping("/listAll")
-	public ResponseEntity<List<LivroEntity>> listAll (){
+	public ResponseEntity<List<Livro>> listAll (){
 		
 		try {
 			
-			List<LivroEntity> lista = this.livroService.listAll();
+			List<Livro> lista = this.livroService.listAll();
 			return new ResponseEntity<>(lista, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
@@ -82,11 +83,11 @@ public class LivroController {
 	
 	
 	@GetMapping("/findById/{idLivro}")
-	public ResponseEntity<LivroEntity> findById(@PathVariable long idLivro){
+	public ResponseEntity<Livro> findById(@PathVariable long idLivro){
 		
 		try {
 			
-			LivroEntity livro = this.livroService.findById(idLivro);
+			Livro livro = this.livroService.findById(idLivro);
 			return new ResponseEntity<>(livro, HttpStatus.OK);
 			
 		} catch (Exception e) {
@@ -111,4 +112,5 @@ public class LivroController {
 		}
 		
 	}
+	*/
 }

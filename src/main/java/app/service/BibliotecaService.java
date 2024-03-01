@@ -1,90 +1,52 @@
 package app.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.entity.BibliotecaEntity;
+import app.entity.Biblioteca;
+import app.repository.BibliotecaRepository;
 
 
 @Service
 public class BibliotecaService {
 
-	List<BibliotecaEntity> lista = new ArrayList<>();
-	
-	public String save (BibliotecaEntity biblioteca) {
-		lista.add(biblioteca);
+	@Autowired
+	private BibliotecaRepository bibliotecaRepository;
+	public String save (Biblioteca biblioteca) {
+		this.bibliotecaRepository.save(biblioteca);
 		return biblioteca.getNome() + " salva com sucesso";
 	}
-	
-	
 
-	public List<BibliotecaEntity> listAll(){
 
-		BibliotecaEntity biblioteca = new BibliotecaEntity(1, "Biblioteca", "45888898");
-		BibliotecaEntity biblioteca2 = new BibliotecaEntity(2, "BibliotecaB", "458888998");
-		BibliotecaEntity biblioteca3 = new BibliotecaEntity(3, "BibliotecaC", "458888998");
 
-		lista.add(biblioteca);
-		lista.add(biblioteca2);
-		lista.add(biblioteca3);
+	public List<Biblioteca> listAll(){
+		return this.bibliotecaRepository.findAll();
+	}
 
-		return lista;
+
+	public String update(long id, Biblioteca biblioteca) {
+		biblioteca.setId(id);
+		this.bibliotecaRepository.save(biblioteca);
+		return biblioteca.getNome() + " registro atualizado";
+	}
+
+
+	public Biblioteca findById(long idBiblioteca) {
+
+		Biblioteca biblioteca = this.bibliotecaRepository.findById(idBiblioteca).get();
+		return biblioteca;
 
 	}
 
-	
-	
-	
-public String update(long idBiblioteca, BibliotecaEntity biblioteca) {
-		
-		lista = this.listAll();
+	public String delete(long idBiblioteca) {
 
-		if(lista != null)
-			for(int i=0; i<lista.size(); i++) {
-				if(lista.get(i).getId() == idBiblioteca) {
-					lista.set(i, biblioteca);
-					return biblioteca.getNome()+ " biblioteca alterada com sucesso";
-				}
-			}
+		this.bibliotecaRepository.deleteById(idBiblioteca);
+		return  "Registro deletado";
 
-		return "não encontrado";
 	}
 
-public BibliotecaEntity findById(long idBiblioteca) {
 
-	// banco de dados
-	lista = this.listAll();
 
-	if(lista != null)
-		for(int i=0; i<lista.size(); i++) {
-			if(lista.get(i).getId() == idBiblioteca) {
-				return lista.get(i);
-			}
-		}
-
-	return null;
-
-}
-
-public boolean delete(long idBiblioteca) {
-
-	// banco de dados
-	lista = this.listAll();
-
-	if(lista != null)
-		for(BibliotecaEntity biblioteca : this.lista) {
-			if(biblioteca.getId() == idBiblioteca) {
-				this.lista.remove(biblioteca);
-				return true;
-			}
-		}
-
-	return false;
-
-}
-
-	
-	
 }

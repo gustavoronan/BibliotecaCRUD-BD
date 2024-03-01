@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.entity.EditoraEntity;
+import app.entity.Editora;
 import app.service.EditoraService;
 
 
@@ -28,7 +28,7 @@ public class EditoraController {
 	private EditoraService editoraService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody EditoraEntity editora){
+	public ResponseEntity<String> save(@RequestBody Editora editora){
 
 
 
@@ -47,11 +47,11 @@ public class EditoraController {
 	}
 	
 	@GetMapping("/listAll")
-	public ResponseEntity<List<EditoraEntity>> listAll (){
+	public ResponseEntity<List<Editora>> listAll (){
 		
 		try {
 			
-			List<EditoraEntity> lista = this.editoraService.listAll();
+			List<Editora> lista = this.editoraService.listAll();
 			return new ResponseEntity<>(lista, HttpStatus.CREATED);
 			
 		} catch (Exception e) {
@@ -63,11 +63,11 @@ public class EditoraController {
 	}
 	
 	@GetMapping("/findById/{idEditora}")
-	public ResponseEntity<EditoraEntity> findById(@PathVariable long idEditora){
+	public ResponseEntity<Editora> findById(@PathVariable long idEditora){
 		
 		try {
 			
-			EditoraEntity editora = this.editoraService.findById(idEditora);
+			Editora editora = this.editoraService.findById(idEditora);
 			return new ResponseEntity<>(editora, HttpStatus.OK);
 			
 		} catch (Exception e) {
@@ -77,7 +77,7 @@ public class EditoraController {
 	}
 	
 	@PutMapping("update/{idEditora}")
-	public ResponseEntity<String> update(@RequestBody EditoraEntity editora, @PathVariable long idEditora){
+	public ResponseEntity<String> update(@RequestBody Editora editora, @PathVariable long idEditora){
 
 
 

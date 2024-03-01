@@ -1,30 +1,31 @@
 package app.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.entity.LivroEntity;
+import app.entity.Livro;
+import app.repository.LivroRepository;
 
 @Service
 public class LivroService {
 
 
-	List<LivroEntity> lista = new ArrayList<>();
+	@Autowired
+	private LivroRepository livroRepository;
 	
-	public String save (LivroEntity livro) {
-		lista.add(livro);
+	public String save (Livro livro) {
+
+		this.livroRepository.save(livro);
 		return livro.getTitulo() + " livro salvo com sucesso";
 	}
 	
 	
+/*
+	public List<Livro> listAll(){
 
-	public List<LivroEntity> listAll(){
-
-		LivroEntity livro = new LivroEntity(1, "12345678", "Dom Casmurro", "Um clássico da literatura brasileira", 1899, 256);
-		LivroEntity livro2 = new LivroEntity(2, "98765432", "A Culpa é das Estrelas", "Uma história emocionante sobre amor e perda", 2012, 318);
-		LivroEntity livro3 = new LivroEntity(3, "13579246", "Harry Potter e a Pedra Filosofal", "O primeiro livro da saga Harry Potter", 1997, 223);
+		Livro livro = new Livro(1, "12345678", "Dom Casmurro", "Um clássico da literatura brasileira", 1899, 256);
+		Livro livro2 = new Livro(2, "98765432", "A Culpa é das Estrelas", "Uma história emocionante sobre amor e perda", 2012, 318);
+		Livro livro3 = new Livro(3, "13579246", "Harry Potter e a Pedra Filosofal", "O primeiro livro da saga Harry Potter", 1997, 223);
 
 		lista.add(livro);
 		lista.add(livro2);
@@ -37,7 +38,7 @@ public class LivroService {
 	
 	
 	
-public String update(long idLivro, LivroEntity livro) {
+public String update(long idLivro, Livro livro) {
 		
 		lista = this.listAll();
 
@@ -52,7 +53,7 @@ public String update(long idLivro, LivroEntity livro) {
 		return "não encontrado";
 	}
 
-public LivroEntity findById(long idLivro) {
+public Livro findById(long idLivro) {
 
 	// banco de dados
 	lista = this.listAll();
@@ -74,7 +75,7 @@ public boolean delete(long idLivro) {
 	lista = this.listAll();
 
 	if(lista != null)
-		for(LivroEntity livro : this.lista) {
+		for(Livro livro : this.lista) {
 			if(livro.getIdLivro() == idLivro) {
 				this.lista.remove(livro);
 				return true;
@@ -84,5 +85,5 @@ public boolean delete(long idLivro) {
 	return false;
 
 }
-	
+	*/
 }
