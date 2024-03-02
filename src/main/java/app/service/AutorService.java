@@ -23,54 +23,28 @@ public class AutorService {
 	public List<Autor> listAll(){
 		return this.autorRepository.findAll();
 	}
-	
-	/*
+
 	public Autor findById(long idAutor) {
 
-		// banco de dados
-		lista = this.listAll();
+		Autor autor = this.autorRepository.findById(idAutor).get();
+		return autor;
 
-		if(lista != null)
-			for(int i=0; i<lista.size(); i++) {
-				if(lista.get(i).getIdAutor() == idAutor) {
-					return lista.get(i);
-				}
-			}
-
-		return null;
-	
 	}
+	
+	
 	
 	public String update(long idAutor, Autor autor) {
-		
-		lista = this.listAll();
-
-		if(lista != null)
-			for(int i=0; i<lista.size(); i++) {
-				if(lista.get(i).getIdAutor() == idAutor) {
-					lista.set(i, autor);
-					return autor.getNomeAutor()+ " autor alterado com sucesso";
-				}
-			}
-
-		return "não encontrado";
+		autor.setIdAutor(idAutor);
+		this.autorRepository.save(autor);
+		return autor.getNomeAutor() + " registro atualizado";
 	}
 	
-	public boolean delete(long idAutor) {
+	
+	public String delete(long idAutor) {
 
-		// banco de dados
-		lista = this.listAll();
-
-		if(lista != null)
-			for(Autor autor : this.lista) {
-				if(autor.getIdAutor() == idAutor) {
-					this.lista.remove(autor);
-					return true;
-				}
-			}
-
-		return false;
+		this.autorRepository.deleteById(idAutor);
+		return  "Registro deletado";
 
 	}
-	*/
+	
 }
