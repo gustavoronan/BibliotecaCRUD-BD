@@ -44,8 +44,6 @@ public class LivroController {
 		
 	}
 	
-
-/*	
 	@PutMapping("update/{idLivro}")
 	public ResponseEntity<String> update(@RequestBody Livro livro, @PathVariable long idLivro){
 
@@ -67,18 +65,18 @@ public class LivroController {
 	
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Livro>> listAll (){
-		
+
 		try {
-			
+
 			List<Livro> lista = this.livroService.listAll();
 			return new ResponseEntity<>(lista, HttpStatus.CREATED);
-			
+
 		} catch (Exception e) {
-			
+
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 
 		}
-		
+
 	}
 	
 	
@@ -100,17 +98,13 @@ public class LivroController {
 	public ResponseEntity<String> delete(@PathVariable long idLivro){
 		
 		try {
-			
-			if (this.livroService.delete(idLivro)) {
-				return new ResponseEntity<String>("Apagado com sucesso", HttpStatus.OK);
-				}else 
-					return new ResponseEntity<String>("Nao encontrado", HttpStatus.NOT_FOUND);
-			
+			String mensagem = this.livroService.delete(idLivro);
+			return new ResponseEntity<String>(mensagem, HttpStatus.OK);		
 			
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Deu esse erro aqui: "+e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		
 	}
-	*/
+	
 }

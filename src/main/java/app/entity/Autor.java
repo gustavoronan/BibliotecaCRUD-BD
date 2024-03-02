@@ -32,8 +32,6 @@ public class Autor {
 	private String cpfAutor;
 	private int idadeAutor;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable (name =  "livro")
-	private List<Livro> livro;
+	
 	
 }
